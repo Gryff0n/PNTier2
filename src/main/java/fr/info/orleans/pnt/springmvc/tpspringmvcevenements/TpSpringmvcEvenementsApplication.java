@@ -1,0 +1,13 @@
+package fr.info.orleans.pnt.springmvc.tpspringmvcevenements;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TpSpringmvcEvenementsApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(TpSpringmvcEvenementsApplication.class, args);
+    }
+
+}

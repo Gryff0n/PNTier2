@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Liste</title></head>
+<body>
+<h1>Evenements :</h1>
+<ul>
+    <span th:if="${evenements.isEmpty()}">Liste d'évènements vide</span>
+    <span th:unless="${evenements.isEmpty()}">
+        <li th:each="e : ${evenements}">
+            <span th:text="${e.nom}">Nom</span> a
+            <span th:text="${e.lieu}">Lieu</span> le
+            <span th:text="${e.date}">Date</span>
+        </li>
+    </span>
+</ul>
+</body>
+</html>
