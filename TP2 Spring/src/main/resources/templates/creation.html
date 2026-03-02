@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un événement</title>
+    <style>
+        .error-box {
+            border: 1px solid red;
+            background-color: #fdd;
+            color: darkred;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Créer un événement</h1>
+
+
+    <form th:action="@{/mesevenements/creation}" th:object="${evenementDTO}" method="post">
+
+
+        <label for="nom">Nom :</label><br>
+        <input type="text" id="nom" th:field="*{nom}" /><br><br>
+
+        <label for="lieu">Lieu :</label><br>
+        <input type="text" id="lieu" th:field="*{lieu}" /><br><br>
+
+        <label for="date">Date :</label><br>
+        <input type="date" id="date" th:field="*{date}" /><br><br>
+
+        <button type="submit">Valider</button>
+
+
+        <div th:if="${#fields.hasErrors()}" class="error-box">
+            <p><strong>Des erreurs ont été détectées :</strong></p>
+            <ul>
+
+                <!-- Erreurs de champ -->
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+            </ul>
+        </div>
+
+    </form>
+</body>
+</html>
