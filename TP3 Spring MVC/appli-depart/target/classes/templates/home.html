@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Accueil</title></head>
+<body>
+
+<h2>Bienvenue, <span th:text="${laisserPasser.email}"></span> !</h2>
+
+<ul>
+    <li><a th:href="@{/mesevenements/evenements}">Voir la liste des événements</a></li>
+    <li><a th:href="@{/mesevenements/creationform}">Créer un événement</a></li>
+</ul>
+
+<a th:href="@{/mesevenements/logout}">Se déconnecter</a>
+
+</body>
+</html>

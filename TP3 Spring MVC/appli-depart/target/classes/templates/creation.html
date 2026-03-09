@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Création d'un évènement</title></head>
+<style>
+    .error-message {
+        background: #fee;
+        border: 1px solid #fcc;
+        color: #c66;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        display: block;
+        animation: slideDown 0.3s ease;
+    }
+</style>
+<body>
+
+
+<form th:action="@{/mesevenements/creation}" th:object="${evenementDTO}" method="post">
+    <h2>Création d'un nouvel évènement</h2>
+    <div>
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required>
+        <div th:if="${#fields.hasErrors('nom')}" class="error-message">
+            <span th:errors="*{nom}">Erreur sur le nom</span>
+        </div>
+    </div>
+    <div>
+    <label for="lieu">Lieu :</label>
+    <input type="text" id="lieu" name="lieu" required>
+        <div th:if="${#fields.hasErrors('lieu')}" class="error-message">
+            <span th:errors="*{lieu}">Erreur sur le lieu</span>
+        </div>
+    </div>
+    <div>
+    <label for="date">Date :</label>
+    <input type="date" id="date" name="date" required>
+        <div th:if="${#fields.hasErrors('date')}" class="error-message">
+            <span th:errors="*{date}">Erreur sur la date</span>
+        </div>
+    </div>
+    <button type="submit">Créer l'évènement</button>
+</form>
+<a th:href="@{/mesevenements/home}">Retour à la liste</a>
+</body>
+</html>

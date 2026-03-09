@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Liste des évènements</h2>
+
+<ul>
+    <li th:each="e : ${evenements}">
+        <a th:href="@{/mesevenements/evenement/{id}(id=${e.identifiant})}" th:text="${e.nom}">Nom</a>
+        à <span th:text="${e.lieu}"></span>
+        le <span th:text="${e.date}"></span>
+    </li>
+</ul>
+</body>
+</html>
