@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title layout:fragment="title">Création d'un évènement</title>
+</head>
+<body>
+
+<h1 layout:fragment="headerTitle">Gestion d'évènements en ligne</h1>
+<h2 layout:fragment="headerSubtitle">Créer un nouvel évènement</h2>
+
+<div layout:fragment="content">
+    <form th:action="@{/mesevenements/creation}" th:object="${evenementDTO}" method="post">
+        <div>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+            <div th:if="${#fields.hasErrors('nom')}" class="error-message">
+                <span th:errors="*{nom}">Erreur sur le nom</span>
+            </div>
+        </div>
+        <div>
+            <label for="lieu">Lieu :</label>
+            <input type="text" id="lieu" name="lieu" required>
+            <div th:if="${#fields.hasErrors('lieu')}" class="error-message">
+                <span th:errors="*{lieu}">Erreur sur le lieu</span>
+            </div>
+        </div>
+        <div>
+            <label for="date">Date :</label>
+            <input type="date" id="date" name="date" required>
+            <div th:if="${#fields.hasErrors('date')}" class="error-message">
+                <span th:errors="*{date}">Erreur sur la date</span>
+            </div>
+        </div>
+        <button type="submit">Créer l'évènement</button>
+    </form>
+    <p><a th:href="@{/mesevenements/evenements}">Retour à la liste</a></p>
+    <p><a th:href="@{/mesevenements/home}">Retour au menu</a></p>
+</div>
+</body>
+</html>

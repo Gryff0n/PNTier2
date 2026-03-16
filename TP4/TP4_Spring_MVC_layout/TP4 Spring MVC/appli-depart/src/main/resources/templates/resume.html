@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title layout:fragment="title">Résumé</title>
+</head>
+<body>
+
+<h1 layout:fragment="headerTitle">Gestion d'évènements en ligne</h1>
+<h2 layout:fragment="headerSubtitle">Confirmation</h2>
+
+<div layout:fragment="content">
+    <h2 th:text="${message}"></h2>
+    <p>L'identifiant de l'évènement créé est <span th:text="${identifiant}"></span>.</p>
+    <p><a th:href="@{/mesevenements/evenements}">Retour à la liste</a></p>
+    <p><a th:href="@{/mesevenements/home}">Retour au menu</a></p>
+</div>
+</body>
+</html>

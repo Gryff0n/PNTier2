@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title layout:fragment="title">Debug Login</title>
+</head>
+<body>
+
+<h1 layout:fragment="headerTitle">Gestion d'évènements en ligne</h1>
+<h2 layout:fragment="headerSubtitle">DEBUG - État du modèle</h2>
+
+<div layout:fragment="content">
+    <p>authDTO disponible : <span th:text="${authentificationDTO != null}"></span></p>
+    <p>authDTO.email : <span th:text="${authentificationDTO?.email}"></span></p>
+    <p>authDTO.motDePasse : <span th:text="${authentificationDTO?.motDePasse}"></span></p>
+
+    <div th:with="hasErrors=${#fields.hasAnyErrors()}">
+        <p>hasAnyErrors : <span th:text="${hasErrors}"></span></p>
+    </div>
+
+    <form th:action="@{/mesevenements/login}" th:object="${authentificationDTO}" method="post">
+        <div>
+            <label>Email:</label>
+            <input type="text" th:field="*{email}">
+            <div th:if="${#fields.hasErrors('email')}">
+                <span>Il y a une erreur email</span>
+                <span th:errors="*{email}"></span>
+            </div>
+        </div>
+        <div>
+            <label>Mot de passe:</label>
+            <input type="password" th:field="*{motDePasse}">
+            <div th:if="${#fields.hasErrors('motDePasse')}">
+                <span>Il y a une erreur mot de passe</span>
+                <span th:errors="*{motDePasse}"></span>
+            </div>
+        </div>
+        <button type="submit">Test</button>
+    </form>
+</div>
+</body>
+</html>

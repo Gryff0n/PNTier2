@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title layout:fragment="title">Menu</title>
+</head>
+<body>
+
+<h1 layout:fragment="headerTitle">Gestion d'évènements en ligne</h1>
+<h2 layout:fragment="headerSubtitle">Menu principal</h2>
+
+<div layout:fragment="content">
+    <h2 th:if="${nomUtilisateur != '' && nomUtilisateur != null && prenomUtilisateur != null && prenomUtilisateur != ''}"
+        th:text="${'Bonjour ' + prenomUtilisateur + ' ' + nomUtilisateur}"></h2>
+
+    <ul>
+        <li><a th:href="@{/mesevenements/creationform}">Créer un nouvel évènement</a></li>
+        <li><a th:href="@{/mesevenements/evenements}">Consulter la liste des évènements</a></li>
+        <li><a th:href="@{/mesevenements/logout}">Se déconnecter</a></li>
+    </ul>
+</div>
+</body>
+</html>

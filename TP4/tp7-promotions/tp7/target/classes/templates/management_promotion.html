@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title layout:fragment="title">Gestion des promotions</title>
+</head>
+<body>
+
+<h1 layout:fragment="headerTitle">Gestion des Promotions</h1>
+<h2 layout:fragment="headerSubtitle">Créer une nouvelle promotion</h2>
+
+<div layout:fragment="content">
+
+    <!-- Formulaire de création -->
+    <section class="card">
+        <h2>Créer une nouvelle promotion</h2>
+
+        <div th:if="${erreurConflit}" class="error-message" th:text="${erreurConflit}"></div>
+
+        <form th:action="@{/promotions/creation}" th:object="${promotionDTO}"
+              method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="identifiantPromotion">Identifiant de la promotion :</label>
+                <input type="text" id="identifiantPromotion" th:field="*{identifiantPromotion}"
+                       placeholder="ex: L3INFO">
+                <span th:if="${#fields.hasErrors('identifiantPromotion')}"
+                      th:errors="*{identifiantPromotion}" class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="anneeScolaire">Année scolaire :</label>
+                <input type="text" id="anneeScolaire" th:field="*{anneeScolaire}"
+                       placeholder="ex: 2024-2025">
+                <span th:if="${#fields.hasErrors('anneeScolaire')}"
+                      th:errors="*{anneeScolaire}" class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="fichierPromotion">Fichier CSV :</label>
+                <input type="file" id="fichierPromotion" name="fichierPromotion" accept=".csv">
+                <span th:if="${#fields.hasErrors('fichierPromotion')}"
+                      th:errors="*{fichierPromotion}" class="error-message"></span>
+            </div>
+
+            <button type="submit" class="btn-primary">Créer la promotion</button>
+        </form>
+    </section>
+
+    <!-- Liste des promotions existantes -->
+    <section class="card" th:if="${not #lists.isEmpty(promotions)}">
+        <h2>Promotions enregistrées</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Année scolaire</th>
+                    <th>Voir les étudiants</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${promotions}">
+                    <td th:text="${p.identifiantPromotion}"></td>
+                    <td th:text="${p.anneeScolaire}"></td>
+                    <td>
+                        <a th:href="@{/promotions/detail(identifiant=${p.identifiantPromotion},annee=${p.anneeScolaire})}">
+                            Voir
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</div>
+</body>
+</html>

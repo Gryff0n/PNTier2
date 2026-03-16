@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title">Page</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+
+<header>
+    <h1 layout:fragment="headerTitle">Evènements en ligne</h1>
+    <h2 layout:fragment="headerSubtitle">Ma section</h2>
+</header>
+
+<div id="main-content" layout:fragment="content">
+    <!-- contenu par défaut ou vide -->
+</div>
+
+<footer>
+    &copy; 2025 - Mes événements en ligne
+</footer>
+
+</body>
+</html>
